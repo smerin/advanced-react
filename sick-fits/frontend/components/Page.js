@@ -31,6 +31,7 @@ injectGlobal`
     font-weight: normal;
     font-style: normal;
   }
+
   html {
     box-sizing: border-box;
     font-size: 10px;
@@ -48,6 +49,9 @@ injectGlobal`
   a {
     text-decoration: none;
     color: ${theme.black};
+  }
+  button {
+    font-family: 'radnika_next';
   }
 `;
 
