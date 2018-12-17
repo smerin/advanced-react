@@ -1,5 +1,5 @@
 # source: https://eu1.prisma.sh/george-smerin-9b6426/gs-advanced-react/dev
-# timestamp: Wed Oct 17 2018 17:24:05 GMT+0100 (BST)
+# timestamp: Mon Dec 17 2018 19:52:20 GMT+0000 (Greenwich Mean Time)
 
 type AggregateItem {
   count: Int!
@@ -126,6 +126,14 @@ input ItemUpdateInput {
   largeImage: String
   price: Int
   user: UserUpdateOneRequiredInput
+}
+
+input ItemUpdateManyMutationInput {
+  title: String
+  description: String
+  image: String
+  largeImage: String
+  price: Int
 }
 
 input ItemWhereInput {
@@ -381,8 +389,8 @@ type Mutation {
   deleteUser(where: UserWhereUniqueInput!): User
   upsertItem(where: ItemWhereUniqueInput!, create: ItemCreateInput!, update: ItemUpdateInput!): Item!
   upsertUser(where: UserWhereUniqueInput!, create: UserCreateInput!, update: UserUpdateInput!): User!
-  updateManyItems(data: ItemUpdateInput!, where: ItemWhereInput): BatchPayload!
-  updateManyUsers(data: UserUpdateInput!, where: UserWhereInput): BatchPayload!
+  updateManyItems(data: ItemUpdateManyMutationInput!, where: ItemWhereInput): BatchPayload!
+  updateManyUsers(data: UserUpdateManyMutationInput!, where: UserWhereInput): BatchPayload!
   deleteManyItems(where: ItemWhereInput): BatchPayload!
   deleteManyUsers(where: UserWhereInput): BatchPayload!
 }
@@ -568,6 +576,15 @@ input UserUpdateDataInput {
 }
 
 input UserUpdateInput {
+  name: String
+  email: String
+  password: String
+  resetToken: String
+  resetTokenExpiry: Float
+  permissions: UserUpdatepermissionsInput
+}
+
+input UserUpdateManyMutationInput {
   name: String
   email: String
   password: String
