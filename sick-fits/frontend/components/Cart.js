@@ -1,10 +1,11 @@
 import React from "react";
+import { Query, Mutation } from "react-apollo";
+import gql from "graphql-tag";
+import User from "./User";
 import CartStyles from "./styles/CartStyles";
 import Supreme from "./styles/Supreme";
 import CloseButton from "./styles/CloseButton";
 import SickButton from "./styles/SickButton";
-import { Query, Mutation } from "react-apollo";
-import gql from "graphql-tag";
 
 const LOCAL_STATE_QUERY = gql`
   query {
@@ -30,7 +31,23 @@ const Cart = () => {
                   &times;
                 </CloseButton>
                 <Supreme>Your cart</Supreme>
-                <p>You have .. items in your cart.</p>
+                <User>
+                  {({ data }) => {
+                    const { cart } = data.me;
+                    console.log(cart);
+
+                    return (
+                      <>
+                        <p>You have {cart.length} items in your cart.</p>
+                        {cart.map(item => (
+                          <p>
+                            {item.id} - {item.quantity}
+                          </p>
+                        ))}
+                      </>
+                    );
+                  }}
+                </User>
               </header>
               <footer>
                 <p>$10.00</p>
