@@ -12,16 +12,16 @@ const ADD_TO_CART_MUTATION = gql`
   }
 `;
 
-const AddToCart = ({ id, children }) => {
+const AddToCart = ({ id }) => {
   return (
     <Mutation
       mutation={ADD_TO_CART_MUTATION}
       variables={{ id }}
       refetchQueries={[{ query: CURRENT_USER_QUERY }]}
     >
-      {addToCart => (
-        <button type="button" onClick={addToCart}>
-          {children}
+      {(addToCart, { loading }) => (
+        <button type="button" disabled={loading} onClick={addToCart}>
+          Add{loading && "ing"} to cart 🛒
         </button>
       )}
     </Mutation>

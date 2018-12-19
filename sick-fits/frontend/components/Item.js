@@ -37,7 +37,7 @@ export default class Item extends Component {
           >
             <a>Edit ✏️</a>
           </Link>
-          <AddToCart id={item.id}>Add to cart</AddToCart>
+          <AddToCart id={item.id} />
           <DeleteItem id={item.id}>Delete this item</DeleteItem>
         </div>
       </ItemStyles>
